@@ -20,3 +20,5 @@
 
 #define kVIPERMODULENAMETOBEREPLACED @"VIPER"
 #define kLANGUAGES @[@"Swift", @"Objective-C"]
+
+#define kMODULETOBEADDATEND @"Module"

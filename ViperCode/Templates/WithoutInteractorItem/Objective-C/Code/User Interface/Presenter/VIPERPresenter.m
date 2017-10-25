@@ -7,7 +7,6 @@
 //
 
 #import "VIPERPresenter.h"
-#import "VIPERWireframe.h"
 
 @implementation VIPERPresenter
 

@@ -9,6 +9,7 @@
 #import "TemplateManager.h"
 
 #define kDefaultTemplate @"Default"
+#define kWithoutInteractorItemTemplate @"WithoutInteractorItem"
 
 @implementation TemplateManager
 
@@ -24,7 +25,9 @@
 }
 
 - (NSString *)defaultTemplate {
-    return kDefaultTemplate;
+    return kWithoutInteractorItemTemplate;
 }
+
+
 
 @end

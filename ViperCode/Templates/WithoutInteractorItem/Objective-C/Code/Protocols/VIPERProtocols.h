@@ -28,7 +28,9 @@
 
 @protocol VIPERWireFrameProtocol
 @required
-+ (void)presentVIPERModuleFrom:(id)fromView;
++(UIViewController *)initViewControllerWithModuleComponents;
++ (void)presentVIPERModuleFrom:(id)fromView completion:(void (^) (void))completion;
++ (void)pushVIPERModuleFrom:(id)fromView completion:(void (^) (void))completion;
 /**
  * Add here your methods for communication PRESENTER -> WIREFRAME
  */

@@ -217,7 +217,7 @@
     NSString *revisedName = [self generateFileNameForCodeHeaderWithName:name andFilePath:filePath];
     
     // Replace content.
-    fileContent = [fileContent stringByReplacingOccurrencesOfString:kFILENAME withString:revisedName];
+    fileContent = [fileContent stringByReplacingOccurrencesOfString:kFILENAME withString:[revisedName stringByAppendingString:kMODULETOBEADDATEND]];
     fileContent = [fileContent stringByReplacingOccurrencesOfString:kPROJECTNAME withString:projectName];
     fileContent = [fileContent stringByReplacingOccurrencesOfString:KFULLUSERNAME withString:author];
     fileContent = [fileContent stringByReplacingOccurrencesOfString:KDATE withString:[self currentDate:[NSDate date]]];
@@ -238,8 +238,8 @@
 - (NSString *)generateFileNameForCodeHeaderWithName:(NSString *)name andFilePath:(NSString *)filePath {
     NSArray *slashes = [filePath componentsSeparatedByString:@"/"];
     NSString *fileName = [[[slashes objectAtIndex:slashes.count-1] componentsSeparatedByString:@"."] objectAtIndex:0];
-    fileName = [fileName stringByReplacingOccurrencesOfString:kMODULENAME withString:name];
-    
+    fileName = [fileName stringByReplacingOccurrencesOfString:kMODULENAME withString:[name stringByAppendingString:kMODULETOBEADDATEND]];
+
     return fileName;
 }
 

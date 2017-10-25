@@ -10,8 +10,7 @@
 
 @implementation VIPERWireFrame
 
-+ (void)presentVIPERModuleFrom:(UIViewController*)fromViewController {
-
++(UIViewController *)initViewControllerWithModuleComponents{
     // Generating module components
     id <VIPERViewProtocol> view = [[VIPERViewController alloc] init];
     id <VIPERPresenterProtocol, VIPERInteractorOutputProtocol> presenter = [VIPERPresenter new];
@@ -19,7 +18,7 @@
     id <VIPERAPIDataManagerInputProtocol> APIDataManager = [VIPERAPIDataManager new];
     id <VIPERLocalDataManagerInputProtocol> localDataManager = [VIPERLocalDataManager new];
     id <VIPERWireFrameProtocol> wireFrame= [VIPERWireFrame new];
-
+    
     // Connecting
     view.presenter = presenter;
     presenter.view = view;
@@ -28,8 +27,16 @@
     interactor.presenter = presenter;
     interactor.APIDataManager = APIDataManager;
     interactor.localDataManager = localDataManager;
+    
+    return (UIViewController *)view;
+}
 
-    //TODO: - Present interface(present, push)
++ (void)presentVIPERModuleFrom:(UIViewController*)fromViewController  completion:(void (^)(void))completion{
+    [fromViewController presentViewController:[self initViewControllerWithModuleComponents] animated:YES completion:nil];
+}
+
++(void)pushVIPERModuleFrom:(UIViewController *)fromViewController  completion:(void (^)(void))completion{
+    [fromViewController.navigationController pushViewController:[self initViewControllerWithModuleComponents] animated:YES];
 }
 
 @end
