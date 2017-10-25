@@ -31,12 +31,14 @@
     return (UIViewController *)view;
 }
 
+//TODO: add in super classes with animated and completion
+
 + (void)presentVIPERModuleFrom:(UIViewController*)fromViewController  completion:(void (^)(void))completion{
-    [fromViewController presentViewController:[self initViewControllerWithModuleComponents] animated:YES completion:nil];
+    [fromViewController presentViewController:[self initViewControllerWithModuleComponents] animated:YES completion:completion];
 }
 
 +(void)pushVIPERModuleFrom:(UIViewController *)fromViewController  completion:(void (^)(void))completion{
-    [fromViewController.navigationController pushViewController:[self initViewControllerWithModuleComponents] animated:YES];
+    [fromViewController.navigationController pushViewController:[self initViewControllerWithModuleComponents] animated:YES completion:completion];
 }
 
 @end
