@@ -9,5 +9,12 @@
 #import "VIPERLocalDataManager.h"
 
 @implementation VIPERLocalDataManager
+objection_register_singleton(VIPERLocalDataManager)
+objection_requires(@"interactor")
+
+#pragma Public Methods
+
+
+#pragma Private Methods
 
 @end

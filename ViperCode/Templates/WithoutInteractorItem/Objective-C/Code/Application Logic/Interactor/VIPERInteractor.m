@@ -8,6 +8,17 @@
 
 #import "VIPERInteractor.h"
 
+@interface VIPERInteractor()
+
+@end
+
 @implementation VIPERInteractor
+objection_register_singleton(VIPERInteractor)
+objection_requires(@"presenter", @"APIDataManager", @"localDataManager")
+
+#pragma Public Methods
+
+
+#pragma Private Methods
 
 @end

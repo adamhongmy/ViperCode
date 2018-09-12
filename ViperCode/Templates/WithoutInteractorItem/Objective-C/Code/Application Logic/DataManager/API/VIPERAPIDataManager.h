@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Objection/Objection.h>
 #import "VIPERProtocols.h"
+#import "BaseAPIDataManager.h"
+#import "AppProtocols.h"
 
-@interface VIPERAPIDataManager : NSObject <VIPERAPIDataManagerInputProtocol>
+@interface VIPERAPIDataManager : BaseAPIDataManager <VIPERAPIDataManagerInputProtocol>
+
+@property (nonatomic, strong) id<AppNetworkingProtocol> networking;
 
 @end

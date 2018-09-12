@@ -6,9 +6,13 @@
 //  Copyright © ___YEAR___ ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "VIPERProtocols.h"
+#import "BaseLocalDataManager.h"
 
-@interface VIPERLocalDataManager : NSObject <VIPERLocalDataManagerInputProtocol>
+
+@interface VIPERLocalDataManager : BaseLocalDataManager <VIPERLocalDataManagerInputProtocol>
+
+@property (nonatomic, weak) id <VIPERLocalDataManagerOutputProtocol> interactor;
+
 
 @end

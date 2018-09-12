@@ -8,17 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AppProtocols.h"
+#import "BaseProtocols.h"
 
 @protocol VIPERInteractorOutputProtocol;
 @protocol VIPERInteractorInputProtocol;
 @protocol VIPERViewProtocol;
 @protocol VIPERPresenterProtocol;
 @protocol VIPERLocalDataManagerInputProtocol;
+@protocol VIPERLocalDataManagerOutputProtocol;
 @protocol VIPERAPIDataManagerInputProtocol;
+@protocol VIPERWireFrameInputProtocol;
+@protocol VIPERWireFrameOutputProtocol;
 
-@class VIPERWireFrame;
 
-@protocol VIPERViewProtocol
+@protocol VIPERViewProtocol <BaseViewProtocol>
 @required
 @property (nonatomic, strong) id <VIPERPresenterProtocol> presenter;
 /**
@@ -26,33 +30,40 @@
  */
 @end
 
-@protocol VIPERWireFrameProtocol
+@protocol VIPERWireFrameInputProtocol <BaseWireFrameInputProtocol>
 @required
-+(UIViewController *)initViewControllerWithModuleComponents;
-+ (void)presentVIPERModuleFrom:(id)fromView completion:(void (^) (void))completion;
-+ (void)pushVIPERModuleFrom:(id)fromView completion:(void (^) (void))completion;
+@property (nonatomic, assign) id<AppAdapterProtocol> appAdapter;
+@property (nonatomic, weak) id <VIPERWireFrameOutputProtocol> presenter;
 /**
  * Add here your methods for communication PRESENTER -> WIREFRAME
  */
+
 @end
 
-@protocol VIPERPresenterProtocol
+@protocol VIPERWireFrameOutputProtocol <BaseWireFrameOutputProtocol>
+
+/**
+ * Add here your methods for communication WIREFRAME -> PRESENTER
+ */
+@end
+
+@protocol VIPERPresenterProtocol <BasePresenterProtocol>
 @required
 @property (nonatomic, weak) id <VIPERViewProtocol> view;
 @property (nonatomic, strong) id <VIPERInteractorInputProtocol> interactor;
-@property (nonatomic, strong) id <VIPERWireFrameProtocol> wireFrame;
+@property (nonatomic, strong) id <VIPERWireFrameInputProtocol> wireFrame;
 /**
  * Add here your methods for communication VIEWCONTROLLER -> PRESENTER
  */
 @end
 
-@protocol VIPERInteractorOutputProtocol
+@protocol VIPERInteractorOutputProtocol <BaseInteractorOutputProtocol>
 /**
  * Add here your methods for communication INTERACTOR -> PRESENTER
  */
 @end
 
-@protocol VIPERInteractorInputProtocol
+@protocol VIPERInteractorInputProtocol <BaseInteractorInputProtocol>
 @required
 @property (nonatomic, weak) id <VIPERInteractorOutputProtocol> presenter;
 @property (nonatomic, strong) id <VIPERAPIDataManagerInputProtocol> APIDataManager;
@@ -63,20 +74,25 @@
 @end
 
 
-@protocol VIPERDataManagerInputProtocol
-/**
- * Add here your methods for communication INTERACTOR -> DATAMANAGER
- */
-@end
+@protocol VIPERAPIDataManagerInputProtocol <BaseAPIDataManagerInputProtocol>
 
-@protocol VIPERAPIDataManagerInputProtocol <VIPERDataManagerInputProtocol>
+@property (nonatomic, strong) id<AppNetworkingProtocol> networking;
+
 /**
  * Add here your methods for communication INTERACTOR -> APIDATAMANAGER
  */
 @end
 
-@protocol VIPERLocalDataManagerInputProtocol <VIPERDataManagerInputProtocol>
+@protocol VIPERLocalDataManagerOutputProtocol <BaseLocalDataManagerOutputProtocol>
 /**
- * Add here your methods for communication INTERACTOR -> LOCLDATAMANAGER
+ * Add here your methods for communication LOCALDATAMANAGER -> INTERACTOR
  */
+@end
+
+@protocol VIPERLocalDataManagerInputProtocol <BaseLocalDataManagerInputProtocol>
+/**
+ * Add here your methods for communication INTERACTOR -> LOCALDATAMANAGER
+ */
+@required
+@property (nonatomic, weak) id <VIPERLocalDataManagerOutputProtocol> interactor;
 @end

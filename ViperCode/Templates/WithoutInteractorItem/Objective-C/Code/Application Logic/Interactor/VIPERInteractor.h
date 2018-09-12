@@ -6,10 +6,10 @@
 //  Copyright © ___YEAR___ ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "VIPERProtocols.h"
+#import "BaseInteractor.h"
 
-@interface VIPERInteractor : NSObject <VIPERInteractorInputProtocol>
+@interface VIPERInteractor : BaseInteractor <VIPERInteractorInputProtocol, VIPERLocalDataManagerOutputProtocol>
 
 @property (nonatomic, weak) id <VIPERInteractorOutputProtocol> presenter;
 @property (nonatomic, strong) id <VIPERAPIDataManagerInputProtocol> APIDataManager;

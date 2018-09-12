@@ -5,17 +5,12 @@
 //  Created by ___FULLUSERNAME___ on ___DATE___.
 //  Copyright © ___YEAR___ ___ORGANIZATIONNAME___. All rights reserved.
 //
-
-#import <Foundation/Foundation.h>
 #import "VIPERProtocols.h"
-#import "VIPERViewController.h"
-#import "VIPERLocalDataManager.h"
-#import "VIPERAPIDataManager.h"
-#import "VIPERInteractor.h"
-#import "VIPERPresenter.h"
-#import "VIPERWireframe.h"
-#import <UIKit/UIKit.h>
+#import "BaseWireFrame.h"
 
-@interface VIPERWireFrame : NSObject <VIPERWireFrameProtocol>
+@interface VIPERWireFrame : BaseWireFrame <VIPERWireFrameInputProtocol>
+
+@property (nonatomic, assign) id<AppAdapterProtocol> appAdapter;
+@property (nonatomic, weak) id <VIPERWireFrameOutputProtocol> presenter;
 
 @end

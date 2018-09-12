@@ -6,15 +6,14 @@
 //  Copyright © ___YEAR___ ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "VIPERProtocols.h"
+#import "BasePresenter.h"
 
-@class VIPERWireFrame;
 
-@interface VIPERPresenter : NSObject <VIPERPresenterProtocol, VIPERInteractorOutputProtocol>
+@interface VIPERPresenter : BasePresenter <VIPERPresenterProtocol, VIPERInteractorOutputProtocol, VIPERWireFrameOutputProtocol>
 
 @property (nonatomic, weak) id <VIPERViewProtocol> view;
 @property (nonatomic, strong) id <VIPERInteractorInputProtocol> interactor;
-@property (nonatomic, strong) id <VIPERWireFrameProtocol> wireFrame;
+@property (nonatomic, strong) id <VIPERWireFrameInputProtocol> wireFrame;
 
 @end
